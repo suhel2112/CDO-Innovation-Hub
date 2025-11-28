@@ -1,0 +1,36 @@
+name: Medium Agentic AI Weekly Digest
+
+on:
+  schedule:
+    - cron: "0 9 * * 6"   # Runs Saturday at 09:00 UTC
+  workflow_dispatch: {}   # Allows manual runs
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+
+    env:
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: ./AI-Agents/Medium-Agentic-AI-Digest
+        run: |
+          pip install feedparser python-dotenv
+
+      - name: Run Medium Agent
+        working-directory: ./AI-Agents/Medium-Agentic-AI-Digest
+        run: python medium_agent.py
