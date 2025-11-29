@@ -22,13 +22,10 @@ Retrieves articles from the past 7 days
 
 Extracts metadata including:
 
-Title
-
-Publish date
-
-URL
-
-Summary snippet
+-Title
+-Publish date
+-URL
+-Summary snippet
 
 Builds a clean weekly digest
 
@@ -62,17 +59,12 @@ on:
 
 GitHub Actions securely stores and injects SMTP and email credentials:
 
-SMTP_HOST
-
-SMTP_PORT
-
-SMTP_USER
-
-SMTP_PASS
-
-TO_EMAIL
-
-FROM_EMAIL
+-SMTP_HOST
+-SMTP_PORT
+-SMTP_USER
+-SMTP_PASS
+-TO_EMAIL
+-FROM_EMAIL
 
 No credentials are stored in code.
 
@@ -90,19 +82,13 @@ AI-Agents/
 
 🚀 Execution Flow
 
-GitHub Actions starts on schedule
-
-Python environment is set up
-
-Dependencies are installed
-
-medium_agent.py runs
-
-Articles from the last 7 days are collected
-
-Digest email is composed
-
-Email is delivered to your inbox
+1.GitHub Actions starts on schedule
+2.Python environment is set up
+3.Dependencies are installed
+4.medium_agent.py runs
+5.Articles from the last 7 days are collected
+6.Digest email is composed
+7.Email is delivered to your inbox
 
 📬 Example Output (Plain Text)
 Weekly Agentic AI Digest — 3 New Articles
