@@ -23,12 +23,4 @@ portfolio/ # Signature AI project + exec summary
 README.md
 requirements.txt / environment.yml
 
-## Notebooks
-- Week 1 – Intro (Pandas + Matplotlib)  
-https://mybinder.org/v2/gh/suhel2112/CDO-Innovation-Hub/b8748958454adcfa9587f19ec8aa8afe501f7673?urlpath=lab%2Ftree%2FFoundations%2Fnotebooks%2Fweek1_intro.ipynb
-
-https://mybinder.org/v2/gh/suhel2112/CDO-Innovation-Hub/b8748958454adcfa9587f19ec8aa8afe501f7673?urlpath=lab%2Ftree%2FFoundations%2Fnotebooks%2Fweek1_pandas_practice.ipynb
-
-
-- Week 2 – EDA & Stats  
  
