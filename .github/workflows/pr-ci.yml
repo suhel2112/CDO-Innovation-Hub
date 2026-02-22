@@ -11,29 +11,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r Data-Engineering/dbt-analytics-lakehouse-demo/requirements.txt
 
       - name: dbt build (dev)
         run: |
-          cd analytics
-          dbt deps
+          cd Data-Engineering/dbt-analytics-lakehouse-demo/analytics
+          dbt deps --profiles-dir .
           dbt seed --full-refresh --profiles-dir .
           dbt build --fail-fast --profiles-dir .
 
       - name: dbt docs generate
         run: |
-          cd analytics
-          dbt docs generate
+          cd Data-Engineering/dbt-analytics-lakehouse-demo/analytics
+          dbt docs generate --profiles-dir .
 
       - name: Upload dbt artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dbt-artifacts
           path: |
-            analytics/target/manifest.json
-            analytics/target/run_results.json
-            analytics/target/catalog.json
+            Data-Engineering/dbt-analytics-lakehouse-demo/analytics/target/manifest.json
+            Data-Engineering/dbt-analytics-lakehouse-demo/analytics/target/run_results.json
+            Data-Engineering/dbt-analytics-lakehouse-demo/analytics/target/catalog.json
