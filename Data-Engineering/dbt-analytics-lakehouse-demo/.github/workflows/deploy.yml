@@ -1,0 +1,39 @@
+name: deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    env:
+      DBT_TARGET: stage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: |
+          cd analytics
+          dbt deps
+          dbt seed --full-refresh --profiles-dir .
+          dbt build --fail-fast --profiles-dir .
+
+  prod:
+    runs-on: ubuntu-latest
+    needs: stage
+    environment: prod
+    env:
+      DBT_TARGET: prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: |
+          cd analytics
+          dbt deps 
+          dbt build --profiles-dir .

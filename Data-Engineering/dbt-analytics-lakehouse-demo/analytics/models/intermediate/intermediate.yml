@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: int_customer_order_metrics
+    description: "Reusable customer order rollups (ephemeral)."
+    

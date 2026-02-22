@@ -1,0 +1,39 @@
+name: pr-ci
+
+on:
+  pull_request:
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    env:
+      DBT_TARGET: dev
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: dbt build (dev)
+        run: |
+          cd analytics
+          dbt deps
+          dbt seed --full-refresh --profiles-dir .
+          dbt build --fail-fast --profiles-dir .
+
+      - name: dbt docs generate
+        run: |
+          cd analytics
+          dbt docs generate
+
+      - name: Upload dbt artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-artifacts
+          path: |
+            analytics/target/manifest.json
+            analytics/target/run_results.json
+            analytics/target/catalog.json

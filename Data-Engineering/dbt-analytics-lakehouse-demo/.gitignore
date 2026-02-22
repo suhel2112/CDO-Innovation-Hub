@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Conda
+.conda/
+conda-meta/
+
+# dbt
+analytics/target/
+analytics/dbt_packages/
+analytics/logs/
+
+# DuckDB warehouse
+warehouse/
+*.duckdb
+
+#logs
+logs/
+*.log
+
+RevisionDoc.txt

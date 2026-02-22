@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: customer_analytics_demo
+    type: analysis
+    maturity: medium
+    url: https://github.com/suhel2112/CDO-Innovation-Hub
+    description: >
+      Demo exposure showing how curated marts feed analytics outputs.
+    depends_on:
+      - ref('dim_customers')
+      - ref('fct_orders')
+    owner:
+      name: Suhel
+      email: <>

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staged customers (typed + light cleansing)."
+    columns:
+      - name: customer_id
+        tests: [not_null, unique]
+
+  - name: stg_orders
+    description: "Staged orders (typed + light cleansing)."
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+      - name: customer_id
+        tests: [not_null]
+        

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension with rollups."
+
+  - name: fct_orders
+    description: "Order facts (incremental)."
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: amount
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0

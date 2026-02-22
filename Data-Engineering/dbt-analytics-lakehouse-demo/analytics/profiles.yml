@@ -1,0 +1,15 @@
+dbt_demo:
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  outputs:
+    dev:
+      type: duckdb
+      path: "../warehouse/dev.duckdb"
+      threads: 4
+    stage:
+      type: duckdb
+      path: "../warehouse/stage.duckdb"
+      threads: 4
+    prod:
+      type: duckdb
+      path: "../warehouse/prod.duckdb"
+      threads: 6
